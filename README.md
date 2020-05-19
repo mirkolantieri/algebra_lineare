@@ -10,4 +10,4 @@ Questo progetto tratta i sistemi lineari attraverso una mini libreria  *"fatta i
 
 ## 2. Descrizione
 
-Il linguaggio open source utilizzato è Python, con l'utilizzo del framework __Anaconda__ per poter analizzare i dati (in questo caso i sistemi lineari algebrici), sotto un formato più scientifico piuttosto che applicativo.
+Il linguaggio open source utilizzato è Python, nello specifico il framework __Anaconda__ per poter analizzare i dati (in questo caso i sistemi lineari algebrici), sotto un formato scientifico piuttosto che applicativo. 
