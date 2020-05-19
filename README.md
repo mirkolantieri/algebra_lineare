@@ -1,5 +1,11 @@
 # Risoluzione dei sistemi lineari
 
+<p>
+<b> Mirko Lantieri</b><br>
+Matricola 858278 <br>
+A.A 2019/2020 
+</p>
+
 ## 1. Introduzione
 Questo progetto tratta i sistemi lineari attraverso una mini libreria  *"fatta in casa"* . L'obiettivo è quello di generare una libreria  open source, la quale sia in grado di  poter risolvere diversi sistemi lineari, tra cui:
 
