@@ -8,7 +8,7 @@ quali verranno definiti nel folder /library
 # importo delle librerie standard essenziali per la lettura delle matrici
 
 import numpy as np
-import scipy
+import matplotlib.pyplot as plt
 
 ITERATION_LIMIT = 50000
 
@@ -18,17 +18,17 @@ class System:
         return
 
     # il metodo caricherà la matrice in formato array (ovviamente per le matrici sparse verrà fatto l'override del metodo)
-    def loadMatrix(self, A):
+    def loadMatrix(A):
         return np.array(A)
 
-    def getIteration(self, k):
+    def getIteration(k):
         if k < ITERATION_LIMIT:
             return k
         elif k > ITERATION_LIMIT:
-            return "Il sistema non converge"
+            return ITERATION_LIMIT
     
     # il metodo stampa il sistema    
-    def printSystem(self, A, b):
+    def printSystem(A, b):
         mat = np.asarray(A)
         bb = np.asarray(b)
 
@@ -40,6 +40,8 @@ class System:
 
 
     # solver del sistema: ogni sistema iterativo implemnterà il metodo in base alle sue specificità
-    def solver(self, A, b, x, tol):
-        return NotImplemented
+    def solver(A, b, x, tol, k):
+        return 
         
+    def plotSystem(A,b,x):
+        return plt.show()

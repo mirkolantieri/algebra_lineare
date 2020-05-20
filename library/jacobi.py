@@ -1,3 +1,9 @@
+""" 
+Libreria del metodo lineare di Jacobi: come si nota
+alcuni dei metodi sono già visti nella classe astratta "Linear.py",
+quindi possiamo fare tranquillamente l'override dei metodi
+"""
+
 from library.linear import System
 import numpy as np
 
@@ -5,25 +11,49 @@ import numpy as np
 
 class Jacobi(System):
 
-    def solver(self, A, b, x, tol, k):
-        mat = np.asarray(A)
-        bb = np.asarray(b)
-
+    def __init__(self):
+        return
+    
+    
+    def plotSystem(A, b, x):
+        return
+    
+    def solver( A, b, x, tol, k):
+        
+        # stampiamo il sistema
         Jacobi.printSystem(A,b)
-
-        x = np.zeros_like(bb)
-        for it in range(Jacobi.getIteration(k)):
-            print("Current solution:" , x)
-            x_new = np.zeros_like (x)
-
-            for i in range(mat.shape[0]):
-                s1 = np.dot(mat[i, :i], x[:i])
-                s2 = np.dot(mat[i, i + 1:], x[i + 1:])
-                x_new[i] = (bb[i] - s1 - s2) / mat[i, i]
-            if np.allclose (x, x_new, tol, rtol=0.):
+        
+        AA = np.asarray(A)
+        bb = np.asarray(b)
+        x = np.asarray(x)
+        
+        x = np.zeros_like (bb)
+        D = np.diag(np.diag(AA))
+        LU = A - D
+        
+        
+        for it_count in range(Jacobi.getIteration(k)):
+            print("Soluzione iterata:" , x)
+            x_new = x
+            for i in range(AA.shape[0]):
+                D_inv = np.diag(1 / np.diag(D))
+                x_new = np.dot(D_inv, (bb - np.dot(LU, x)))
+                
+            if np.linalg.norm(x_new - x) < tol:
                 break
             x = x_new
-        print("Solution:\n " + x )
-        error = np.dot(A, x) - b
-        print("Error:" )
+        print()
+        print("Soluzione:" )
+        print(x)
+        print()
+        print("Valore reale di b:")
+        print(bb)
+        print()
+        print("Valore computato di b:")
+        print(np.dot(AA,x))
+        print()
+        error = np.dot(AA, x) - bb
+        print("Errore rel.:" )
         print(error)
+
+        
