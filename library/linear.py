@@ -43,5 +43,8 @@ class System:
     def solver(A, b, x, tol, k):
         return 
         
-    def plotSystem(A,b,x):
-        return plt.show()
+    def plotSystem(x, title):
+         plt.plot( x, 'r-', label='grafo iterazione')
+         plt.grid()
+         plt.legend(loc='best')
+         plt.title(title)

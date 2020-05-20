@@ -28,17 +28,16 @@ print(matrix)
 """
 
 from library.jacobi import Jacobi as j
-import numpy as np
 
 A = [
     [5, 2, 1, 1],
     [2, 6, 2, 1],
     [1, 2, 7, 1],
-    [1, 1, 2, 8]
+    [1, 1, 2, 8],
 ]
 b = [29, 31, 26, 19]
 x = [1,2,3,4]
-tol = 1e-12
-k = 100
+tol = 1e-9
+k = 1000
 
 x = j.solver(A, b, x, tol, k)

@@ -7,15 +7,11 @@ quindi possiamo fare tranquillamente l'override dei metodi
 from library.linear import System
 import numpy as np
 
-
 class Jacobi(System):
 
     def __init__(self):
         return
-    
-    
-    def plotSystem(A, b, x):
-        return
+        
     
     def solver( A, b, x, tol, k):
         
@@ -41,6 +37,8 @@ class Jacobi(System):
             if np.linalg.norm(x_new - x) < tol:
                 break
             x = x_new
+        Jacobi.plotSystem(x, "Valutazione del metodo di Jacobi")
+            
         print()
         print("Soluzione:" )
         print(x)
