@@ -8,7 +8,6 @@ from library.linear import System
 import numpy as np
 
 
-
 class Jacobi(System):
 
     def __init__(self):
