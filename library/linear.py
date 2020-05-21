@@ -44,7 +44,7 @@ class System:
         return 
         
     def plotSystem(x, title):
-         plt.plot( x, 'r-', label='grafo iterazione')
+         plt.plot( x, label=title)
          plt.grid()
          plt.legend(loc='best')
          plt.title(title)

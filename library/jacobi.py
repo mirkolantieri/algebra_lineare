@@ -11,7 +11,8 @@ class Jacobi(System):
 
     def __init__(self):
         return
-        
+    
+    
     
     def solver( A, b, x, tol, k):
         
@@ -34,10 +35,10 @@ class Jacobi(System):
                 D_inv = np.diag(1 / np.diag(D))
                 x_new = np.dot(D_inv, (bb - np.dot(LU, x)))
                 
-            if np.linalg.norm(x_new - x) < tol:
+            if np.allclose(x, x_new, tol):
                 break
             x = x_new
-        Jacobi.plotSystem(x, "Valutazione del metodo di Jacobi")
+        Jacobi.plotSystem(x, "Metodo di Jacobi")
             
         print()
         print("Soluzione:" )
