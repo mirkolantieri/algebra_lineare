@@ -1,4 +1,4 @@
-import numpy as np 
+
 """
   
 R = int(input("Inserire il numero delle righe:")) 
@@ -21,6 +21,7 @@ print(matrix)
 
 from library.jacobi import Jacobi as j
 from library.gauss_seidel import GaussSeidel as gs
+from library.conjgrad import ConjGrad as cg
 
 A = [
     [5, 2, 1, 1],
@@ -36,12 +37,8 @@ k = 1000
 
 x1 = j.solver(A, b, x, tol, k)
 
-A = np.array([[10., -1., 2., 0.],
-              [-1., 11., -1., 3.],
-              [2., -1., 10., -1.],
-              [0., 3., -1., 8.]])
-# initialize the RHS vector
-b = np.array([6., 25., -11., 15.])
-
 
 x2 = gs.solver(A, b, x, tol, k)
+
+
+cg = cg.solver(A, b, x, tol, k)

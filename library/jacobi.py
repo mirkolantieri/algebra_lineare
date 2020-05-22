@@ -29,7 +29,7 @@ class Jacobi(System):
         
         
         for it_count in range(Jacobi.getIteration(k)):
-            print("Soluzione iterata:" , x)
+            print("Soluzione iterata {0}:{1}" .format(it_count, x))
             x_new = x
             for i in range(AA.shape[0]):
                 D_inv = np.diag(1 / np.diag(D))
