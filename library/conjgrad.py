@@ -24,19 +24,22 @@ class ConjGrad(System):
         
         r = bb - np.dot(AA, x)
         p = np.copy(r)
-        rsold = np.dot(np.transpose(r),r)
+        rsold = np.dot(p,r)
+        
+        
         
         for it_count in range(1,ConjGrad.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(1,bb.shape[0]):
                 Ap = np.dot(AA,p)
-                alpha = rsold / (np.dot(np.transpose(p), Ap))
+                alpha = rsold / (np.dot(p, Ap))
                 x = x + (alpha*p)
-                r = r - (alpha*Ap)
+                r = bb - np.dot(AA,x)
                 rsnew = np.transpose(r) * r
                 if np.allclose(r, rsnew, tol):
                     break
-                p = r + (rsnew / rsold) * p
+                beta = -np.dot(r,Ap) / np.dot(p,Ap)
+                p = r + beta * p
                 rsold = rsnew
 
         ConjGrad.plotSystem(x, "Metodo del Gradiente Coniugato")

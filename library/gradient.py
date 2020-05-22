@@ -16,7 +16,7 @@ class Gradient(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        ConjGrad.printSystem(A,b)
+        Gradient.printSystem(A,b)
         
         AA = np.asarray(A)
         bb = np.asarray(b)

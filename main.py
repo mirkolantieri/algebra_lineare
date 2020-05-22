@@ -22,6 +22,7 @@ print(matrix)
 from library.jacobi import Jacobi as j
 from library.gauss_seidel import GaussSeidel as gs
 from library.conjgrad import ConjGrad as cg
+from library.gradient import Gradient as g
 
 A = [
     [5, 2, 1, 1],
@@ -32,7 +33,7 @@ A = [
 b = [29, 31, 26, 19]
 
 x = [1,2,3,4]
-tol = 1e-9
+tol = 1e-12
 k = 1000
 
 x1 = j.solver(A, b, x, tol, k)
@@ -42,3 +43,5 @@ x2 = gs.solver(A, b, x, tol, k)
 
 
 cg = cg.solver(A, b, x, tol, k)
+
+gr = g.solver(A, b, x, tol, k)
