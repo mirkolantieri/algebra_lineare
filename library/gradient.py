@@ -51,7 +51,7 @@ class Gradient(System):
         print("Valore computato di b:")
         print(np.dot(AA,x))
         print()
-        error = np.dot(AA, x) - bb
+        error = (np.dot(AA, x) - bb) / bb
         print("Errore rel.:" )
         print(error)
 

@@ -25,7 +25,7 @@ class Jacobi(System):
         
         x = np.zeros_like (bb)
         D = np.diag(np.diag(AA))
-        LU = A - D
+        LU = AA - D
         
         
         for it_count in range(Jacobi.getIteration(k)):
@@ -50,7 +50,7 @@ class Jacobi(System):
         print("Valore computato di b:")
         print(np.dot(AA,x))
         print()
-        error = np.dot(AA, x) - bb
+        error = (np.dot(AA, x) - bb) / bb
         print("Errore rel.:" )
         print(error)
 

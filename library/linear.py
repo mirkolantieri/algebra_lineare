@@ -27,9 +27,13 @@ class System:
         elif k > ITERATION_LIMIT:
             return ITERATION_LIMIT
     
+    def loadMTX(A,b):
+        return NotImplemented
+    
+    
     # il metodo stampa il sistema    
     def printSystem(A, b):
-        mat = np.asarray(A)
+        mat = np.asanyarray(A)
         bb = np.asarray(b)
 
         print("Sistema Lineare:")
@@ -47,4 +51,4 @@ class System:
          plt.plot( x, label=title)
          plt.grid()
          plt.legend(loc='best')
-         plt.title(title)
+         plt.title("Metodi diretti sistemi lineari")
