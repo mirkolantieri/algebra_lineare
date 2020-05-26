@@ -18,7 +18,7 @@ class Jacobi(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        Jacobi.printSystem(A,b)
+        #Jacobi.printSystem(A,b)
 
         print("Inside Jacobi solver")
 
@@ -53,7 +53,7 @@ class Jacobi(System):
         start = time.clock() 
         
         for it_count in range(Jacobi.getIteration(k)):
-            print("Soluzione iterata {0}:{1}" .format(it_count, x))
+            #print("Soluzione iterata {0}:{1}" .format(it_count, x))
             x_new = x
             for i in range(AA.shape[0]):
                 D_inv = np.diag(1 / np.diag(D))

@@ -8,7 +8,6 @@ from library.gauss_seidel import GaussSeidel as gs
 from library.conjgrad import ConjGrad as cg
 from library.gradient import Gradient as g
 import numpy as np
-import scipy
 
 
 A = np.array([[10., -1., 2., 0.],
@@ -22,17 +21,29 @@ x = np.dot(A,b)
 tol = 1e-10
 k = 10000
 
-j.solver(A, b, x, tol, k)
+
+#j.solver(A, b, x, tol, k)
+
+#gs.solver(A, b, x, tol, k)
+
+#g.solver(A, b, x, tol, k)
+
+#cg.solver(A, b, x, tol, k)
+
+###############################################################################
+
+B = s.loadMatrix('data/1138_bus.mtx')
+
+xx = np.ones(B.shape[0])
+
+bb = np.dot(B, xx)
 
 
+j.solver(B.T, bb, xx, tol, k)
 
+gs.solver(B.T, bb, xx, tol, k)
 
-"""
+g.solver(B.T, bb, xx, tol, k)
 
-gs.solver(A, b, x, tol, k)
+cg.solver(B.T, bb, xx, tol, k)
 
-g.solver(A, b, x, tol, k)
-
-cg.solver(A, b, x, tol, k)
-
-"""

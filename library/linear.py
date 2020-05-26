@@ -9,7 +9,7 @@ quali verranno definiti nel folder /library
 
 import numpy as np
 import matplotlib.pyplot as plt
-
+import scipy.io
 
 ITERATION_LIMIT = 50000
 
@@ -19,8 +19,7 @@ class System:
         return
 
     # il metodo caricherà la matrice in formato array (ovviamente per le matrici sparse verrà fatto l'override del metodo)
-    def loadMatrix(A):
-        return np.array(A)
+    
 
     def getIteration(k):
         if k < ITERATION_LIMIT:
@@ -28,6 +27,9 @@ class System:
         elif k > ITERATION_LIMIT:
             return ITERATION_LIMIT
     
+    def loadMatrix(file):
+        B = scipy.io.mmread(file)
+        return B.toarray()
     
     # il metodo stampa il sistema    
     def printSystem(A, b):
