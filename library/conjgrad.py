@@ -6,6 +6,7 @@ quindi possiamo fare tranquillamente l'override dei metodi
 
 from library.linear import System
 import numpy as np
+import time
 
 class ConjGrad(System):
 
@@ -26,7 +27,7 @@ class ConjGrad(System):
         p = np.copy(r)
         rsold = np.dot(p,r)
         
-        
+        start = time.clock() 
         
         for it_count in range(1,ConjGrad.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
@@ -42,6 +43,11 @@ class ConjGrad(System):
                 p = r + beta * p
                 rsold = rsnew
 
+        end = time.clock() 
+    
+        print("Computazione in ", end-start)
+        print()
+        
         ConjGrad.plotSystem(x, "Metodo del Gradiente Coniugato")
             
         print()

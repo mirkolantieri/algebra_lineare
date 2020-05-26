@@ -10,6 +10,7 @@ quali verranno definiti nel folder /library
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 ITERATION_LIMIT = 50000
 
 class System:
@@ -27,9 +28,6 @@ class System:
         elif k > ITERATION_LIMIT:
             return ITERATION_LIMIT
     
-    def loadMTX(A,b):
-        return NotImplemented
-    
     
     # il metodo stampa il sistema    
     def printSystem(A, b):
@@ -43,7 +41,7 @@ class System:
         print()
 
 
-    # solver del sistema: ogni sistema iterativo implemnterà il metodo in base alle sue specificità
+    # solver del sistema: ogni sistema iterativo implementerà il metodo in base alle sue specificità
     def solver(A, b, x, tol, k):
         return 
         

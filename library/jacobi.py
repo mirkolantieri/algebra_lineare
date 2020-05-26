@@ -6,6 +6,7 @@ quindi possiamo fare tranquillamente l'override dei metodi
 
 from library.linear import System
 import numpy as np
+import time
 
 class Jacobi(System):
 
@@ -27,6 +28,7 @@ class Jacobi(System):
         D = np.diag(np.diag(AA))
         LU = AA - D
         
+        start = time.clock() 
         
         for it_count in range(Jacobi.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
@@ -38,6 +40,11 @@ class Jacobi(System):
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
+        
+        end = time.clock() 
+    
+        print("Computazione in ", end-start)
+        print()
         Jacobi.plotSystem(x, "Metodo di Jacobi")
             
         print()

@@ -6,6 +6,7 @@ quindi possiamo fare tranquillamente l'override dei metodi
 
 from library.linear import System
 import numpy as np
+import time
 
 class Gradient(System):
 
@@ -26,6 +27,8 @@ class Gradient(System):
         p = np.copy(r)
         rsold = np.dot(np.transpose(r),r)
         
+        start = time.clock() 
+        
         for it_count in range(1,Gradient.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(1,bb.shape[0]):
@@ -39,6 +42,11 @@ class Gradient(System):
                 p = r + (rsnew / rsold) * p
                 rsold = rsnew
 
+        end = time.clock() 
+    
+        print("Computazione in ", end-start)
+        print()
+        
         Gradient.plotSystem(x, "Metodo del Gradiente")
             
         print()
