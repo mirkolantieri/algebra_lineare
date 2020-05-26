@@ -22,6 +22,8 @@ x = np.dot(A,b)
 tol = 1e-10
 k = 10000
 
+j.solver(A, b, x, tol, k)
+"""
 
 B = np.loadtxt('data/spa1.mtx' , skiprows = 0)
 
@@ -33,14 +35,12 @@ xx = np.asarray(np.ones(B.shape[0]))
 
 print(xx)
 
-bb = np.asarray(np.dot(B.shape[0],xx))
+bb = np.dot(B.shape[0],xx)
 
 j.solver(B, bb, xx, tol, k)
 
-"""
 
 
-j.solver(A, b, x, tol, k)
 
 gs.solver(A, b, x, tol, k)
 

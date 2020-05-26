@@ -18,7 +18,7 @@ class Jacobi(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        #Jacobi.printSystem(A,b)
+        Jacobi.printSystem(A,b)
 
         print("Inside Jacobi solver")
 
