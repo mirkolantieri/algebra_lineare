@@ -34,16 +34,16 @@ k = 10000
 
 B = s.loadMatrix('data/1138_bus.mtx')
 
-xx = np.ones(B.shape[0])
+xx = np.ones(len(B))
 
 bb = np.dot(B, xx)
 
 
-j.solver(B.T, bb, xx, tol, k)
+gs.solver(B, bb, xx, tol, k)
 
-gs.solver(B.T, bb, xx, tol, k)
+#j.solver(B, bb, xx, tol, k)
 
-g.solver(B.T, bb, xx, tol, k)
+#g.solver(B, bb, xx, tol, k)
 
-cg.solver(B.T, bb, xx, tol, k)
+#cg.solver(B, bb, xx, tol, k)
 

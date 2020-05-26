@@ -18,7 +18,7 @@ class Jacobi(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        #Jacobi.printSystem(A,b)
+        Jacobi.printSystem(A,b)
 
         print("Inside Jacobi solver")
 
@@ -40,9 +40,7 @@ class Jacobi(System):
         print("\nnp.diag(np.diag(AA))")
         print(np.diag(np.diag(AA)))
         # np.diag(np.diag(AA)) converte il vettore in una matrice diagonale
-        #[[1000.    0.    0.]
-        #[   0.   12.    0.]
-        #[   0.    0.   30.]]
+        
 
         """
         Qui si sta cercando di sottrarre a una matrice (182435, 3) una matrice (3, 3)
@@ -53,7 +51,7 @@ class Jacobi(System):
         start = time.clock() 
         
         for it_count in range(Jacobi.getIteration(k)):
-            #print("Soluzione iterata {0}:{1}" .format(it_count, x))
+            print("Soluzione iterata {0}:{1}" .format(it_count, x))
             x_new = x
             for i in range(AA.shape[0]):
                 D_inv = np.diag(1 / np.diag(D))
