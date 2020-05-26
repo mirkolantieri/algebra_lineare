@@ -23,24 +23,11 @@ tol = 1e-10
 k = 10000
 
 j.solver(A, b, x, tol, k)
+
+
+
+
 """
-
-B = np.loadtxt('data/spa1.mtx' , skiprows = 0)
-
-B = np.transpose(B).reshape(B.shape[0:2])
-
-#print(B)
-
-xx = np.asarray(np.ones(B.shape[0]))
-
-print(xx)
-
-bb = np.dot(B.shape[0],xx)
-
-j.solver(B, bb, xx, tol, k)
-
-
-
 
 gs.solver(A, b, x, tol, k)
 
