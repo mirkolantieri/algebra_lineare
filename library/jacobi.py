@@ -18,14 +18,36 @@ class Jacobi(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        Jacobi.printSystem(A,b)
-        
+        #Jacobi.printSystem(A,b)
+
+        print("Inside Jacobi solver")
+
         AA = np.asarray(A)
+        print("AA shape " + str(AA.shape))
+        # AA è una matrice (182435, 3)
+
         bb = np.asarray(b)
         x = np.asarray(x)
         
         x = np.zeros_like (bb)
         D = np.diag(np.diag(AA))
+       
+        print("\nnp.diag(AA)")
+        print(np.diag(AA))
+        # np.diag(AA) restituisce un vettore di 3 elementi [1000.   12.   30.]
+
+
+        print("\nnp.diag(np.diag(AA))")
+        print(np.diag(np.diag(AA)))
+        # np.diag(np.diag(AA)) converte il vettore in una matrice diagonale
+        #[[1000.    0.    0.]
+        #[   0.   12.    0.]
+        #[   0.    0.   30.]]
+
+        """
+        Qui si sta cercando di sottrarre a una matrice (182435, 3) una matrice (3, 3)
+        Il problema è che questo algoritmo funziona su matrici quadrate
+        """
         LU = AA - D
         
         start = time.clock() 
