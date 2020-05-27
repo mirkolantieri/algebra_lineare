@@ -9,7 +9,7 @@ quali verranno definiti nel folder /library
 
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.io
+from scipy import sparse
 
 ITERATION_LIMIT = 50000
 
@@ -28,8 +28,14 @@ class System:
             return ITERATION_LIMIT
     
     def loadMatrix(file):
-        B = scipy.io.mmread(file)
-        return B.toarray()
+        B = np.loadtxt(file)
+        i = B[:,0].astype(np.int)
+        j = B[:,1].astype(np.int)
+        M = i.max()
+        N = j.max()
+        B = sparse.coo_matrix((B[:, 2], (i-1, j-1)), shape=(M, N))
+        k = B.toarray()
+        return k
     
     # il metodo stampa il sistema    
     def printSystem(A, b):

@@ -31,7 +31,7 @@ class ConjGrad(System):
         
         for it_count in range(1,ConjGrad.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
-            for i in range(1,bb.shape[0]):
+            for i in range(AA.shape[0]):
                 Ap = np.dot(AA,p)
                 alpha = rsold / (np.dot(p, Ap))
                 x = x + (alpha*p)
@@ -45,8 +45,6 @@ class ConjGrad(System):
 
         end = time.clock() 
     
-        print("Computazione in ", end-start)
-        print()
         
         ConjGrad.plotSystem(x, "Metodo del Gradiente Coniugato")
             
@@ -64,4 +62,6 @@ class ConjGrad(System):
         print("Errore rel.:" )
         print(error)
 
+        print()
+        print("Computazione in ", end-start)
         

@@ -18,7 +18,7 @@ A = np.array([[10., -1., 2., 0.],
 b = np.array([6., 25., -11., 15.])
 
 x = np.dot(A,b)
-tol = 1e-10
+tol = 1e-4
 k = 10000
 
 
@@ -32,16 +32,16 @@ k = 10000
 
 ###############################################################################
 
-B = s.loadMatrix('data/1138_bus.mtx')
+B = s.loadMatrix('data/spa2.mtx')
 
 xx = np.ones(len(B))
 
 bb = np.dot(B, xx)
 
+j.solver(B, bb, xx, tol, k)
 
-gs.solver(B, bb, xx, tol, k)
+#gs.solver(B, bb, xx, tol, k)
 
-#j.solver(B, bb, xx, tol, k)
 
 #g.solver(B, bb, xx, tol, k)
 

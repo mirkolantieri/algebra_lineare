@@ -63,8 +63,6 @@ class Jacobi(System):
         
         end = time.clock() 
     
-        print("Computazione in ", end-start)
-        print()
         Jacobi.plotSystem(x, "Metodo di Jacobi")
             
         print()
@@ -80,5 +78,7 @@ class Jacobi(System):
         error = (np.dot(AA, x) - bb) / bb
         print("Errore rel.:" )
         print(error)
+        print()
+        print("Computazione in ", end-start)
 
         

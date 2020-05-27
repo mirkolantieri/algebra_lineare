@@ -31,7 +31,7 @@ class Gradient(System):
         
         for it_count in range(1,Gradient.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
-            for i in range(1,bb.shape[0]):
+            for i in range(AA.shape[0]):
                 Ap = np.dot(AA,p)
                 alpha = rsold / (np.dot(np.transpose(p), Ap))
                 x = x + (alpha*p)
@@ -44,8 +44,6 @@ class Gradient(System):
 
         end = time.clock() 
     
-        print("Computazione in ", end-start)
-        print()
         
         Gradient.plotSystem(x, "Metodo del Gradiente")
             
@@ -63,4 +61,6 @@ class Gradient(System):
         print("Errore rel.:" )
         print(error)
 
+        print()
+        print("Computazione in ", end-start)
         

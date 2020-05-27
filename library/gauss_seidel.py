@@ -40,8 +40,6 @@ class GaussSeidel(System):
         
         end = time.clock() 
     
-        print("Computazione in ", end-start)
-        print()
         
         GaussSeidel.plotSystem(x, "Metodo di Gauss-Seidel")
             
@@ -58,5 +56,7 @@ class GaussSeidel(System):
         error = (np.dot(A, x) - b) / b
         print("Errore rel.:" )
         print(error)
+        print()
+        print("Computazione in ", end-start)
 
         
