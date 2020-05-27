@@ -27,7 +27,7 @@ class ConjGrad(System):
         p = np.copy(r)
         rsold = np.dot(p,r)
         
-        start = time.clock() 
+        start = time.process_time()  
         
         for it_count in range(1,ConjGrad.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
@@ -43,7 +43,7 @@ class ConjGrad(System):
                 p = r + beta * p
                 rsold = rsnew
 
-        end = time.clock() 
+        end = time.process_time() 
     
         
         ConjGrad.plotSystem(x, "Metodo del Gradiente Coniugato")

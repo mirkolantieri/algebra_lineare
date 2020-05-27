@@ -27,7 +27,7 @@ class Gradient(System):
         p = np.copy(r)
         rsold = np.dot(np.transpose(r),r)
         
-        start = time.clock() 
+        start = time.process_time() 
         
         for it_count in range(1,Gradient.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
@@ -42,7 +42,7 @@ class Gradient(System):
                 p = r + (rsnew / rsold) * p
                 rsold = rsnew
 
-        end = time.clock() 
+        end = time.process_time() 
     
         
         Gradient.plotSystem(x, "Metodo del Gradiente")

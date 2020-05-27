@@ -25,7 +25,7 @@ class GaussSeidel(System):
         
         x = np.zeros_like (b)
         
-        start = time.clock() 
+        start = time.process_time() 
         
         for it_count in range(1, GaussSeidel.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
@@ -38,7 +38,7 @@ class GaussSeidel(System):
                 break
             x = x_new
         
-        end = time.clock() 
+        end = time.process_time() 
     
         
         GaussSeidel.plotSystem(x, "Metodo di Gauss-Seidel")

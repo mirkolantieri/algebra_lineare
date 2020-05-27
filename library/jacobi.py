@@ -18,7 +18,7 @@ class Jacobi(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        Jacobi.printSystem(A,b)
+        #Jacobi.printSystem(A,b)
 
         print("Inside Jacobi solver")
 
@@ -45,10 +45,11 @@ class Jacobi(System):
         """
         Qui si sta cercando di sottrarre a una matrice (182435, 3) una matrice (3, 3)
         Il problema è che questo algoritmo funziona su matrici quadrate
+        bisogna quindi ridimensionare la matrice (visibile in linear.py --> loadMatrix(file))
         """
         LU = AA - D
         
-        start = time.clock() 
+        start = time.process_time() 
         
         for it_count in range(Jacobi.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
@@ -61,7 +62,7 @@ class Jacobi(System):
                 break
             x = x_new
         
-        end = time.clock() 
+        end = time.process_time()
     
         Jacobi.plotSystem(x, "Metodo di Jacobi")
             
