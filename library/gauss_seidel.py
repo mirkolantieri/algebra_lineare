@@ -17,7 +17,7 @@ class GaussSeidel(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        GaussSeidel.printSystem(A,b)
+        #GaussSeidel.printSystem(A,b)
         
         A = np.asarray(A)
         b = np.asarray(b)

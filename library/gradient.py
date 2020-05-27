@@ -17,7 +17,7 @@ class Gradient(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        Gradient.printSystem(A,b)
+        #Gradient.printSystem(A,b)
         
         AA = np.asarray(A)
         bb = np.asarray(b)
@@ -33,7 +33,7 @@ class Gradient(System):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
                 Ap = np.dot(AA,p)
-                alpha = rsold / (np.dot(np.transpose(p), Ap))
+                alpha = rsold / np.exp((np.dot(p, Ap)))  #in caso di valori nan converto in formatp exp
                 x = x + (alpha*p)
                 r = r - (alpha*Ap)
                 rsnew = np.transpose(r) * r

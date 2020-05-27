@@ -17,7 +17,7 @@ class ConjGrad(System):
     def solver( A, b, x, tol, k):
         
         # stampiamo il sistema
-        ConjGrad.printSystem(A,b)
+        #ConjGrad.printSystem(A,b)
         
         AA = np.asarray(A)
         bb = np.asarray(b)
@@ -33,7 +33,7 @@ class ConjGrad(System):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
                 Ap = np.dot(AA,p)
-                alpha = rsold / (np.dot(p, Ap))
+                alpha = rsold / np.exp(np.dot(p, Ap)) #in caso di valori nan converto in formatp exp
                 x = x + (alpha*p)
                 r = bb - np.dot(AA,x)
                 rsnew = np.transpose(r) * r

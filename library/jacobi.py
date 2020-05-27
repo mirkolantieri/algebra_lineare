@@ -30,8 +30,7 @@ class Jacobi(System):
         x = np.asarray(x)
         
         x = np.zeros_like (bb)
-        D = np.diag(np.diag(AA))
-       
+        
         print("\nnp.diag(AA)")
         print(np.diag(AA))
         # np.diag(AA) restituisce un vettore di 3 elementi [1000.   12.   30.]
@@ -47,7 +46,7 @@ class Jacobi(System):
         Il problema è che questo algoritmo funziona su matrici quadrate
         bisogna quindi ridimensionare la matrice (visibile in linear.py --> loadMatrix(file))
         """
-        LU = AA - D
+
         
         start = time.process_time() 
         
@@ -55,9 +54,9 @@ class Jacobi(System):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             x_new = x
             for i in range(AA.shape[0]):
-                D_inv = np.diag(1 / np.diag(D))
-                x_new = np.dot(D_inv, (bb - np.dot(LU, x)))
-                
+                s1 = np.dot(AA[i, :i], x[:i])
+                s2 = np.dot(AA[i, i + 1:], x[i + 1:])
+                x_new[i] = (bb[i] - s1 - s2) / np.exp(AA[i, i])
             if np.allclose(x, x_new, tol):
                 break
             x = x_new

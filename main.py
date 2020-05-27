@@ -32,7 +32,7 @@ k = 10000
 
 ###############################################################################
 
-B = s.loadMatrix('data/spa2.mtx')
+B = s.loadMatrix('data/spa1.mtx')
 
 xx = np.ones(len(B))
 
