@@ -32,21 +32,21 @@ class ConjGrad(System):
         for it_count in range(1,ConjGrad.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
-                r = bb - np.dot(AA,x)
+                r = bb - np.dot(AA, x)
                 d = np.copy(r)
         
                 y = np.dot(AA,d)
                 z = np.dot(AA,r)
         
-                alpha = np.dot(d,r) / np.exp(np.dot(d,y))
+                alpha = np.exp(np.matmul(d,r)) / np.exp(np.matmul(d,y))
                 x_new = x + np.dot(alpha,d)
                 r_new = bb - np.dot(AA,x_new)
-                w = np.dot(AA,r_new)
-                beta = np.dot(d,w) / np.exp(np.dot(d,y))
+                w = np.matmul(AA, r_new)
+                beta = np.exp(np.matmul(d, w)) / np.exp(np.matmul(d, y))
                 d_new = r_new - np.dot(beta,d)
-            if np.allclose(x, x_new, tol) == True:
+            if np.allclose(x, x_new, tol):
                 break
-            x = x_new   
+            x = x_new
 
         end = time.process_time() 
     

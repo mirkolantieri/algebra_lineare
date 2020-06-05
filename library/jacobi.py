@@ -31,7 +31,7 @@ class Jacobi(System):
         LU = A - D
         x = np.asarray(x_init)
 
-        start = time.process_time()
+        start = time.perf_counter()
         
         for it in range(System.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it, x))
@@ -39,16 +39,16 @@ class Jacobi(System):
                 D_inv = np.diag(1 / np.diag(D))
                 x_new = np.dot(D_inv, bb - np.dot(LU, x))
                 
-            if np.allclose(x, x_new, tol) == True:
+            if np.allclose(x, x_new, tol):
                 break
             x = x_new
         
-        end = time.process_time()
+        end = time.perf_counter()
         
         Jacobi.plotSystem(x, "Metodo di Jacobi")
             
         print()
-        print("Soluzione:" )
+        print("Soluzione:")
         print(format(x))
         print()
         print("Valore reale di b:")
@@ -57,8 +57,8 @@ class Jacobi(System):
         print("Valore computato di b:")
         print(format(np.dot(A,x)))
         print()
-        error = np.linalg.norm( np.dot(A,x)  - bb) / np.linalg.norm(bb)
-        print("Errore rel.:" )
+        error = np.linalg.norm( np.dot(A,x) - bb) / np.linalg.norm(bb)
+        print("Errore rel.:")
         print(error)
         print()
         print("Computazione in ", end-start)

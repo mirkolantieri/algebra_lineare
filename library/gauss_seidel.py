@@ -23,7 +23,7 @@ class GaussSeidel(System):
         b = np.asarray(b)
         x = np.asarray(x)
         
-        x = np.zeros_like (b)
+        x = np.zeros_like(b)
         
         start = time.process_time() 
         
@@ -31,10 +31,10 @@ class GaussSeidel(System):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             x_new = np.zeros_like(x)
             for i in range(A.shape[0]):
-                s1 = np.dot(A[i, :i], x_new[:i])
-                s2 = np.dot(A[i, i + 1:], x[i + 1:])
+                s1 = np.matmul(A[i, :i], x_new[:i])
+                s2 = np.matmul(A[i, i + 1:], x[i + 1:])
                 x_new[i] = (b[i] - s1 - s2) / A[i, i]
-            if np.allclose(x, x_new, tol) == True:
+            if np.allclose(x, x_new, tol):
                 break
             x = x_new
         

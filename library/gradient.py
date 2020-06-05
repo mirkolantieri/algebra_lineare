@@ -29,12 +29,12 @@ class Gradient(System):
         for it_count in range(1,Gradient.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
-                r = bb - np.dot(AA, x)
-                y = np.dot(AA,r)
-                alpha = np.dot(np.transpose(r),r) /  np.exp(np.dot(np.transpose(r),y))
+                r = bb - np.matmul(AA, x)
+                y = np.matmul(AA, r)
+                alpha = (np.dot(np.transpose(r), r)) / np.exp(np.dot(np.transpose(r), y))
 
                 x_new = x + np.dot(alpha,r)
-            if np.allclose(x, x_new, tol) == True:
+            if np.allclose(x, x_new, tol):
                 break
             x = x_new
 

@@ -55,9 +55,10 @@ class System:
         
     def plotSystem(x, title):
         
-         plt.ylabel("Soluzione vettore x")
-         plt.xlabel("Ordine")
+         plt.xlabel("Soluzione vettore x")
+         plt.ylabel("Ordine")
          plt.plot( x, label=title)
          plt.grid()
          plt.legend(loc='best')
-         plt.title("Metodi diretti sistemi lineari")
+         plt.title("Metodi Iterativi")
+         plt.show()
