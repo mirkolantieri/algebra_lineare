@@ -23,24 +23,20 @@ class Gradient(System):
         bb = np.asarray(b)
         x = np.asarray(x)
         
-        r = bb - np.dot(AA, x)
-        p = np.copy(r)
-        rsold = np.dot(np.transpose(r),r)
         
         start = time.process_time() 
         
         for it_count in range(1,Gradient.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
-                Ap = np.dot(AA,p)
-                alpha = rsold / np.exp((np.dot(p, Ap)))  #in caso di valori nan converto in formatp exp
-                x = x + (alpha*p)
-                r = r - (alpha*Ap)
-                rsnew = np.transpose(r) * r
-                if np.allclose(r, rsnew, tol):
-                    break
-                p = r + (rsnew / rsold) * p
-                rsold = rsnew
+                r = bb - np.dot(AA, x)
+                y = np.dot(AA,r)
+                alpha = np.dot(np.transpose(r),r) /  np.exp(np.dot(np.transpose(r),y))
+
+                x_new = x + np.dot(alpha,r)
+            if np.allclose(x, x_new, tol) == True:
+                break
+            x = x_new
 
         end = time.process_time() 
     
@@ -55,9 +51,9 @@ class Gradient(System):
         print(b)
         print()
         print("Valore computato di b:")
-        print(np.dot(AA,x))
+        print(format(np.dot(AA,x)))
         print()
-        error = (np.dot(AA, x) - bb) / bb
+        error = np.linalg.norm( np.dot(AA,x)  - bb) / np.linalg.norm(bb)
         print("Errore rel.:" )
         print(error)
 

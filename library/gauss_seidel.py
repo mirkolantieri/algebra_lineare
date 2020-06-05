@@ -34,7 +34,7 @@ class GaussSeidel(System):
                 s1 = np.dot(A[i, :i], x_new[:i])
                 s2 = np.dot(A[i, i + 1:], x[i + 1:])
                 x_new[i] = (b[i] - s1 - s2) / A[i, i]
-            if np.allclose(x, x_new, tol):
+            if np.allclose(x, x_new, tol) == True:
                 break
             x = x_new
         
@@ -51,9 +51,9 @@ class GaussSeidel(System):
         print(b)
         print()
         print("Valore computato di b:")
-        print(np.dot(A,x))
+        print(format(np.dot(A,x)))
         print()
-        error = (np.dot(A, x) - b) / b
+        error = np.linalg.norm( np.dot(A,x)  - b) / np.linalg.norm(b)
         print("Errore rel.:" )
         print(error)
         print()

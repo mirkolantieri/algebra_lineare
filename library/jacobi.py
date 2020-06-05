@@ -15,70 +15,50 @@ class Jacobi(System):
     
     
     
-    def solver( A, b, x, tol, k):
+    def solver( A, b, x_init, tol, k):
         
         # stampiamo il sistema
-        #Jacobi.printSystem(A,b)
+        # Jacobi.printSystem(A,b)
 
         print("Inside Jacobi solver")
 
-        AA = np.asarray(A)
-        print("AA shape " + str(AA.shape))
-        # AA è una matrice (182435, 3)
-
+        A = np.asarray(A)
+        
         bb = np.asarray(b)
-        x = np.asarray(x)
         
-        x = np.zeros_like (bb)
         
-        print("\nnp.diag(AA)")
-        print(np.diag(AA))
-        # np.diag(AA) restituisce un vettore di 3 elementi [1000.   12.   30.]
+        D = np.diag(np.diag(A))
+        LU = A - D
+        x = np.asarray(x_init)
 
-
-        print("\nnp.diag(np.diag(AA))")
-        print(np.diag(np.diag(AA)))
-        # np.diag(np.diag(AA)) converte il vettore in una matrice diagonale
+        start = time.process_time()
         
-
-        """
-        Qui si sta cercando di sottrarre a una matrice (182435, 3) una matrice (3, 3)
-        Il problema è che questo algoritmo funziona su matrici quadrate
-        bisogna quindi ridimensionare la matrice (visibile in linear.py --> loadMatrix(file))
-        """
-
-        
-        start = time.process_time() 
-        
-        for it_count in range(Jacobi.getIteration(k)):
-            print("Soluzione iterata {0}:{1}" .format(it_count, x))
-            x_new = x
-            for i in range(AA.shape[0]):
-                s1 = np.dot(AA[i, :i], x[:i])
-                s2 = np.dot(AA[i, i + 1:], x[i + 1:])
-                x_new[i] = (bb[i] - s1 - s2) / np.exp(AA[i, i])
-            if np.allclose(x, x_new, tol):
+        for it in range(System.getIteration(k)):
+            print("Soluzione iterata {0}:{1}" .format(it, x))
+            for i in range(A.shape[0]):
+                D_inv = np.diag(1 / np.diag(D))
+                x_new = np.dot(D_inv, bb - np.dot(LU, x))
+                
+            if np.allclose(x, x_new, tol) == True:
                 break
             x = x_new
         
         end = time.process_time()
-    
+        
         Jacobi.plotSystem(x, "Metodo di Jacobi")
             
         print()
         print("Soluzione:" )
-        print(x)
+        print(format(x))
         print()
         print("Valore reale di b:")
-        print(bb)
+        print(b)
         print()
         print("Valore computato di b:")
-        print(np.dot(AA,x))
+        print(format(np.dot(A,x)))
         print()
-        error = (np.dot(AA, x) - bb) / bb
+        error = np.linalg.norm( np.dot(A,x)  - bb) / np.linalg.norm(bb)
         print("Errore rel.:" )
         print(error)
         print()
         print("Computazione in ", end-start)
-
-        

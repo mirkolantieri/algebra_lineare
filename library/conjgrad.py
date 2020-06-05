@@ -23,25 +23,30 @@ class ConjGrad(System):
         bb = np.asarray(b)
         x = np.asarray(x)
         
-        r = bb - np.dot(AA, x)
-        p = np.copy(r)
-        rsold = np.dot(p,r)
+        
+        
+        
         
         start = time.process_time()  
         
         for it_count in range(1,ConjGrad.getIteration(k)):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
-                Ap = np.dot(AA,p)
-                alpha = rsold / np.exp(np.dot(p, Ap)) #in caso di valori nan converto in formatp exp
-                x = x + (alpha*p)
                 r = bb - np.dot(AA,x)
-                rsnew = np.transpose(r) * r
-                if np.allclose(r, rsnew, tol):
-                    break
-                beta = -np.dot(r,Ap) / np.dot(p,Ap)
-                p = r + beta * p
-                rsold = rsnew
+                d = np.copy(r)
+        
+                y = np.dot(AA,d)
+                z = np.dot(AA,r)
+        
+                alpha = np.dot(d,r) / np.exp(np.dot(d,y))
+                x_new = x + np.dot(alpha,d)
+                r_new = bb - np.dot(AA,x_new)
+                w = np.dot(AA,r_new)
+                beta = np.dot(d,w) / np.exp(np.dot(d,y))
+                d_new = r_new - np.dot(beta,d)
+            if np.allclose(x, x_new, tol) == True:
+                break
+            x = x_new   
 
         end = time.process_time() 
     
@@ -56,9 +61,9 @@ class ConjGrad(System):
         print(b)
         print()
         print("Valore computato di b:")
-        print(np.dot(AA,x))
+        print(format(np.dot(AA,x)))
         print()
-        error = (np.dot(AA, x) - bb) / bb
+        error = np.linalg.norm( np.dot(AA,x)  - bb) / np.linalg.norm(bb)
         print("Errore rel.:" )
         print(error)
 

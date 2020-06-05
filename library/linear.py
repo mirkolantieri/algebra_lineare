@@ -54,6 +54,9 @@ class System:
         return 
         
     def plotSystem(x, title):
+        
+         plt.ylabel("Soluzione vettore x")
+         plt.xlabel("Ordine")
          plt.plot( x, label=title)
          plt.grid()
          plt.legend(loc='best')

@@ -17,33 +17,41 @@ A = np.array([[10., -1., 2., 0.],
 
 b = np.array([6., 25., -11., 15.])
 
-x = np.dot(A,b)
-tol = 1e-10
-k = 10000
+x = np.zeros_like(b)
+tol = 1e-4
+k = 30000
+
+"""
 
 
-#j.solver(A, b, x, tol, k)
+j.solver(A, b, x, tol, k)
 
 #gs.solver(A, b, x, tol, k)
 
-#g.solver(A, b, x, tol, k)
+
 
 #cg.solver(A, b, x, tol, k)
 
-###############################################################################
+g.solver(A, b, x, tol, k)
 
-B = s.loadMatrix('data/vem2.mtx')
+
+"""
+
+
+B = s.loadMatrix('data/vem1.mtx')
 
 xx = np.ones(len(B))
 
 bb = np.dot(B, xx)
 
 j.solver(B, bb, xx, tol, k)
-
-gs.solver(B, bb, xx, tol, k)
-
-
+"""
 g.solver(B, bb, xx, tol, k)
 
+gs.solver(B, bb, xx, tol, k)
 cg.solver(B, bb, xx, tol, k)
 
+
+
+
+"""
