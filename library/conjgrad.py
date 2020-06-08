@@ -38,11 +38,11 @@ class ConjGrad(System):
                 y = np.dot(AA,d)
                 z = np.dot(AA,r)
         
-                alpha = np.exp(np.matmul(d,r)) / np.exp(np.matmul(d,y))
+                alpha = np.nan_to_num(np.matmul(d,r)) / np.nan_to_num(np.matmul(d,y))
                 x_new = x + np.dot(alpha,d)
                 r_new = bb - np.dot(AA,x_new)
-                w = np.matmul(AA, r_new)
-                beta = np.exp(np.matmul(d, w)) / np.exp(np.matmul(d, y))
+                w = np.dot(AA, r_new)
+                beta = np.nan_to_num(np.matmul(d, w)) / np.nan_to_num(np.dot(d, y))
                 d_new = r_new - np.dot(beta,d)
             if np.allclose(x, x_new, tol):
                 break

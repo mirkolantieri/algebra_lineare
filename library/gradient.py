@@ -31,7 +31,7 @@ class Gradient(System):
             for i in range(AA.shape[0]):
                 r = bb - np.matmul(AA, x)
                 y = np.matmul(AA, r)
-                alpha = (np.dot(np.transpose(r), r)) / np.exp(np.dot(np.transpose(r), y))
+                alpha = np.matmul(np.transpose(r), r) / np.matmul(np.transpose(r), y)
 
                 x_new = x + np.dot(alpha,r)
             if np.allclose(x, x_new, tol):

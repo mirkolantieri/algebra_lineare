@@ -15,7 +15,7 @@ A = np.array([[10., -1., 2., 0.],
 
 b = np.array([6., 25., -11., 15.])
 
-x = np.zeros_like(b)
+x = np.ones_like(b)
 tol = 1e-4
 k = 30000
 

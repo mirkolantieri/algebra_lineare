@@ -31,8 +31,8 @@ class GaussSeidel(System):
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             x_new = np.zeros_like(x)
             for i in range(A.shape[0]):
-                s1 = np.matmul(A[i, :i], x_new[:i])
-                s2 = np.matmul(A[i, i + 1:], x[i + 1:])
+                s1 = np.dot(A[i, :i], x_new[:i])
+                s2 = np.dot(A[i, i + 1:], x[i + 1:])
                 x_new[i] = (b[i] - s1 - s2) / A[i, i]
             if np.allclose(x, x_new, tol):
                 break
