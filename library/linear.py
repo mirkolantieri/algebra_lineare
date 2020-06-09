@@ -29,13 +29,12 @@ class System:
     
     def loadMatrix(file):
         B = np.loadtxt(file)
-        i = B[:,0].astype(np.int)
-        j = B[:,1].astype(np.int)
+        i = B[:, 0].astype(np.int)
+        j = B[:, 1].astype(np.int)
         M = i.max()
         N = j.max()
-        B = sparse.coo_matrix((B[:, 2], (i-1, j-1)), shape=(M, N))
-        k = B.toarray()
-        return k
+        return sparse.coo_matrix((B[:, 2], (i-1, j-1)), shape=(M, N)).toarray()
+
     
     # il metodo stampa il sistema    
     def printSystem(A, b):
@@ -53,12 +52,13 @@ class System:
     def solver(A, b, x, tol, k):
         return 
         
-    def plotSystem(x, title):
+    def plotSystem(x, time, title):
         
-         plt.xlabel("Soluzione vettore x")
-         plt.ylabel("Ordine")
-         plt.plot( x, label=title)
+         plt.ylabel("Soluzione vettore x")
+         plt.xlabel("Tempo esecuzione")
+         plt.plot(time, label="tempo (ms)")
+         plt.plot(x, label="vettore x[]")
          plt.grid()
          plt.legend(loc='best')
-         plt.title("Metodi Iterativi")
+         plt.title(title)
          plt.show()

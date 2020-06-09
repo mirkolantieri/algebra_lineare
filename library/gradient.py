@@ -18,30 +18,33 @@ class Gradient(System):
         
         # stampiamo il sistema
         #Gradient.printSystem(A,b)
+        print("Inside Gradient solver")
         
         AA = np.asarray(A)
         bb = np.asarray(b)
         x = np.asarray(x)
+
+        times = np.asarray(x)
         
-        
-        start = time.process_time() 
-        
+
         for it_count in range(1,Gradient.getIteration(k)):
+            start = time.process_time()
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
-                r = bb - np.matmul(AA, x)
-                y = np.matmul(AA, r)
-                alpha = np.matmul(np.transpose(r), r) / np.matmul(np.transpose(r), y)
+                r = bb - np.dot(AA, x)
+                y = np.dot(AA, r)
+                alpha = np.nan_to_num(np.matmul(np.transpose(r), r)) / np.nan_to_num(np.matmul(np.transpose(r), y))
 
                 x_new = x + np.dot(alpha,r)
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
 
-        end = time.process_time() 
-    
+            end = time.process_time()
+
+            times[it_count:] = end-start
         
-        Gradient.plotSystem(x, "Metodo del Gradiente")
+        Gradient.plotSystem(x, times, "Metodo del Gradiente")
             
         print()
         print("Soluzione:" )
@@ -53,10 +56,10 @@ class Gradient(System):
         print("Valore computato di b:")
         print(format(np.dot(AA,x)))
         print()
-        error = np.linalg.norm( np.dot(AA,x)  - bb) / np.linalg.norm(bb)
+        error = np.linalg.norm( np.dot(AA,x) - bb) / np.linalg.norm(bb)
         print("Errore rel.:" )
         print(error)
 
         print()
-        print("Computazione in ", end-start)
+        print("Computazione in ", times)
         

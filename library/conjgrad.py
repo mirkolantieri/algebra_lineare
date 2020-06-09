@@ -18,6 +18,7 @@ class ConjGrad(System):
         
         # stampiamo il sistema
         #ConjGrad.printSystem(A,b)
+        print("Inside Conjugate Gradient solver")
         
         AA = np.asarray(A)
         bb = np.asarray(b)
@@ -25,11 +26,12 @@ class ConjGrad(System):
         
         
         
+        times = np.asarray(x)
         
-        
-        start = time.process_time()  
+
         
         for it_count in range(1,ConjGrad.getIteration(k)):
+            start = time.process_time()
             print("Soluzione iterata {0}:{1}" .format(it_count, x))
             for i in range(AA.shape[0]):
                 r = bb - np.dot(AA, x)
@@ -38,20 +40,20 @@ class ConjGrad(System):
                 y = np.dot(AA,d)
                 z = np.dot(AA,r)
         
-                alpha = np.nan_to_num(np.matmul(d,r)) / np.nan_to_num(np.matmul(d,y))
+                alpha = np.nan_to_num(np.dot(d,r)) / np.nan_to_num(np.dot(d,y))
                 x_new = x + np.dot(alpha,d)
                 r_new = bb - np.dot(AA,x_new)
                 w = np.dot(AA, r_new)
-                beta = np.nan_to_num(np.matmul(d, w)) / np.nan_to_num(np.dot(d, y))
+                beta = np.nan_to_num(np.dot(d, w)) / np.nan_to_num(np.dot(d, y))
                 d_new = r_new - np.dot(beta,d)
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
 
-        end = time.process_time() 
-    
+            end = time.process_time()
+            times[it_count:] = end-start
         
-        ConjGrad.plotSystem(x, "Metodo del Gradiente Coniugato")
+        ConjGrad.plotSystem(x, times, "Metodo del Gradiente Coniugato")
             
         print()
         print("Soluzione:" )
@@ -63,10 +65,10 @@ class ConjGrad(System):
         print("Valore computato di b:")
         print(format(np.dot(AA,x)))
         print()
-        error = np.linalg.norm( np.dot(AA,x)  - bb) / np.linalg.norm(bb)
+        error = np.linalg.norm( np.dot(AA,x) - bb) / np.linalg.norm(bb)
         print("Errore rel.:" )
         print(error)
 
         print()
-        print("Computazione in ", end-start)
+        print("Computazione in ", times)
         
