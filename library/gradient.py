@@ -24,6 +24,8 @@ class Gradient(System):
         bb = np.asarray(b)
         x = np.asarray(x)
 
+        error = None
+
         times = np.asarray(x)
         
 
@@ -33,12 +35,12 @@ class Gradient(System):
             for i in range(AA.shape[0]):
                 r = bb - np.dot(AA, x)
                 y = np.dot(AA, r)
-                alpha = np.nan_to_num(np.matmul(np.transpose(r), r)) / np.nan_to_num(np.matmul(np.transpose(r), y))
-
-                x_new = x + np.dot(alpha,r)
+                alpha = np.exp(np.matmul(np.transpose(r), r)) / np.exp(np.matmul(np.transpose(r), y))
+                x_new = x + np.dot(alpha, r)
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
+            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
 
             end = time.process_time()
 
@@ -56,7 +58,7 @@ class Gradient(System):
         print("Valore computato di b:")
         print(format(np.dot(AA,x)))
         print()
-        error = np.linalg.norm( np.dot(AA,x) - bb) / np.linalg.norm(bb)
+
         print("Errore rel.:" )
         print(error)
 

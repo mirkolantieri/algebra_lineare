@@ -26,6 +26,7 @@ class Jacobi(System):
         
         bb = np.asarray(b)
 
+        error = None
 
         D = np.diag(np.diag(A))
         LU = A - D
@@ -33,16 +34,17 @@ class Jacobi(System):
 
         times = np.asarray(x)
 
-        for it in range(System.getIteration(k)):
+        for it in range(1, System.getIteration(k)):
             start = time.perf_counter()
             print("Soluzione iterata {0}:{1}" .format(it, x))
             for i in range(A.shape[0]):
                 D_inv = np.diag(1 / np.nan_to_num(np.diag(D)))
                 x_new = np.dot(D_inv, bb - np.dot(LU, x))
-                
+
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
+            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
             end = time.perf_counter()
 
             times[it:] = (end-start)
@@ -59,7 +61,7 @@ class Jacobi(System):
         print("Valore computato di b:")
         print(format(np.dot(A,x)))
         print()
-        error = np.linalg.norm( np.dot(A,x) - bb) / np.linalg.norm(bb)
+
         print("Errore rel.:")
         print(error)
         print()

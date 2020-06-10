@@ -23,8 +23,8 @@ class GaussSeidel(System):
         A = np.asarray(A)
         b = np.asarray(b)
         x = np.asarray(x)
-        
-        x = np.zeros_like(b)
+
+        error = None
 
         times = np.asarray(x)
 
@@ -37,9 +37,11 @@ class GaussSeidel(System):
                 s1 = np.dot(A[i, :i], x_new[:i])
                 s2 = np.dot(A[i, i + 1:], x[i + 1:])
                 x_new[i] = np.nan_to_num(b[i] - s1 - s2) / np.nan_to_num(A[i, i])
+
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
+            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
         
             end = time.process_time()
             times[it_count:] = (end-start)
@@ -56,7 +58,7 @@ class GaussSeidel(System):
         print("Valore computato di b:")
         print(format(np.dot(A,x)))
         print()
-        error = np.linalg.norm(np.dot(A,x) - b) / np.linalg.norm(b)
+
         print("Errore rel.:" )
         print(error)
         print()

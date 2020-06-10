@@ -24,7 +24,7 @@ class ConjGrad(System):
         bb = np.asarray(b)
         x = np.asarray(x)
         
-        
+        error = None
         
         times = np.asarray(x)
         
@@ -40,15 +40,17 @@ class ConjGrad(System):
                 y = np.dot(AA,d)
                 z = np.dot(AA,r)
         
-                alpha = np.nan_to_num(np.dot(d,r)) / np.nan_to_num(np.dot(d,y))
+                alpha = np.exp(np.dot(d,r)) / np.exp(np.dot(d,y))
                 x_new = x + np.dot(alpha,d)
                 r_new = bb - np.dot(AA,x_new)
                 w = np.dot(AA, r_new)
-                beta = np.nan_to_num(np.dot(d, w)) / np.nan_to_num(np.dot(d, y))
-                d_new = r_new - np.dot(beta,d)
+                beta = np.exp(np.dot(d, w)) / np.exp(np.dot(d, y))
+                d = r_new - np.dot(beta,d)
+
             if np.allclose(x, x_new, tol):
                 break
             x = x_new
+            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
 
             end = time.process_time()
             times[it_count:] = end-start
@@ -65,7 +67,7 @@ class ConjGrad(System):
         print("Valore computato di b:")
         print(format(np.dot(AA,x)))
         print()
-        error = np.linalg.norm( np.dot(AA,x) - bb) / np.linalg.norm(bb)
+
         print("Errore rel.:" )
         print(error)
 
