@@ -8,60 +8,60 @@ from library.linear import System
 import numpy as np
 import time
 
-class Gradient(System):
 
-    def __init__(self):
-        return
-        
-    
-    def solver( A, b, x, tol, k):
-        
+class Gradient (System):
+
+    def solver(self, A, b, x_init, tol, k):
+
         # stampiamo il sistema
-        #Gradient.printSystem(A,b)
+
         print("Inside Gradient solver")
-        
-        AA = np.asarray(A)
-        bb = np.asarray(b)
-        x = np.asarray(x)
 
-        error = None
+        A = np.array(A)
+        b = np.array(b)
+        x = np.array(x_init)
 
-        times = np.asarray(x)
-        
+        error = None  # inizializzo l'errore a None
 
-        for it_count in range(1,Gradient.getIteration(k)):
+        tempo = []
+
+        for it_count in range(1, Gradient.checkIteration(self, k)):
             start = time.process_time()
-            print("Soluzione iterata {0}:{1}" .format(it_count, x))
-            for i in range(AA.shape[0]):
-                r = bb - np.dot(AA, x)
-                y = np.dot(AA, r)
-                alpha = np.exp(np.matmul(np.transpose(r), r)) / np.exp(np.matmul(np.transpose(r), y))
-                x_new = x + np.dot(alpha, r)
+            print("Soluzione iterata {0}:{1}".format(it_count, x))
+
+            # residuo scalato
+            r = b - np.dot(A, x)
+            r_t = np.transpose(r)
+            y = np.dot(A, r)
+
+            c1 = np.dot(r, r_t)
+            c2 = np.dot(r_t, y)
+
+            alpha = np.exp(c1) / np.exp(c2)
+
+            x_new = x + np.dot(alpha, r)
+
+            x = x_new
+
             if np.allclose(x, x_new, tol):
                 break
-            x = x_new
-            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
 
-            end = time.process_time()
+            error = np.linalg.norm(b - np.dot(A, x)) / np.linalg.norm(b)
 
-            times[it_count:] = end-start
-        
-        Gradient.plotSystem(x, times, "Metodo del Gradiente")
-            
+            tempo.append(start - time.process_time())
+
         print()
-        print("Soluzione:" )
-        print(x)
+        print("Soluzione:")
+        print(format(x))
         print()
         print("Valore reale di b:")
         print(b)
         print()
         print("Valore computato di b:")
-        print(format(np.dot(AA,x)))
+        print(format(np.dot(A, x)))
         print()
 
-        print("Errore rel.:" )
-        print(error)
-
+        #print("Errore relativo:\t", "{:.4e}".format(error))
+        print ("Errore relativo:\t", error)
         print()
-        print("Computazione in ", times)
-        
+        print("Computazione in ", format(np.abs(sum(tempo))))

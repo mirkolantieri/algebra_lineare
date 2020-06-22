@@ -13,52 +13,40 @@ from scipy import sparse
 
 ITERATION_LIMIT = 50000
 
+
 class System:
 
-    def __init__(self):
-        return
+    # il metodo caricherà la matrice in formato array (ovviamente per le matrici sparse verrà fatto l'override del
+    # metodo)
 
-    # il metodo caricherà la matrice in formato array (ovviamente per le matrici sparse verrà fatto l'override del metodo)
-    
-
-    def getIteration(k):
-        if k < ITERATION_LIMIT:
+    @staticmethod
+    def checkIteration(self, k):
+        if k <= ITERATION_LIMIT:
             return k
         elif k > ITERATION_LIMIT:
             return ITERATION_LIMIT
-    
-    def loadMatrix(file):
-        B = np.loadtxt(file)
-        i = B[:, 0].astype(np.int)
-        j = B[:, 1].astype(np.int)
-        M = i.max()
-        N = j.max()
-        return sparse.coo_matrix((B[:, 2], (i-1, j-1)), shape=(M, N)).toarray()
 
-    
-    # il metodo stampa il sistema    
+    @staticmethod
+    def loadMatrix(file):
+        b = np.loadtxt(file)
+        i = b[:, 0].astype(np.int)
+        j = b[:, 1].astype(np.int)
+        m = i.max()
+        n = j.max()
+        return sparse.coo_matrix ((b[:, 2], (i - 1, j - 1)), shape=(m, n)).toarray()
+
+    # il metodo stampa il sistema
+    @staticmethod
     def printSystem(A, b):
         mat = np.asanyarray(A)
         bb = np.asarray(b)
 
-        print("Sistema Lineare:")
-        for i in range(mat.shape[0]):
-            row = ["{}*x{}" .format(mat[i, j], j + 1) for j in range(mat.shape[1])]
-            print(" + ".join(row), "=", bb[i])
+        print ("Sistema Lineare:")
+        for i in range (mat.shape[0]):
+            row = ["{}*x{}".format (mat[i, j], j + 1) for j in range (mat.shape[1])]
+            print(" + ".join (row), "=", bb[i])
         print()
 
-
     # solver del sistema: ogni sistema iterativo implementerà il metodo in base alle sue specificità
-    def solver(A, b, x, tol, k):
-        return 
-        
-    def plotSystem(x, time, title):
-        
-         plt.ylabel("Soluzione vettore x")
-         plt.xlabel("Tempo esecuzione")
-         plt.plot(time, label="tempo (ms)")
-         plt.plot(x, label="vettore x[]")
-         plt.grid()
-         plt.legend(loc='best')
-         plt.title(title)
-         plt.show()
+    def solver(self, A, b, x, tol, k):
+        return

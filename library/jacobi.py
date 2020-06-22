@@ -8,49 +8,50 @@ from library.linear import System
 import numpy as np
 import time
 
+
 class Jacobi(System):
 
-    def __init__(self):
-        return
-    
-    
-    
-    def solver( A, b, x_init, tol, k):
-        
+    def solver(self, A, b, x_init, tol, k):
+
         # stampiamo il sistema
         # Jacobi.printSystem(A,b)
 
         print("Inside Jacobi solver")
 
-        A = np.asarray(A)
-        
-        bb = np.asarray(b)
+        # transformo i parametri iniziali in array numpy
+        A = np.array(A)
+        b = np.array(b)
+        x = np.array(x_init)
 
+        # inizializzo l'errore a None
         error = None
 
-        D = np.diag(np.diag(A))
-        LU = A - D
-        x = np.asarray(x_init)
+        tempo = []
 
-        times = np.asarray(x)
+        for it in range(1, System.checkIteration(self, k)):
+            start = time.process_time()
 
-        for it in range(1, System.getIteration(k)):
-            start = time.perf_counter()
-            print("Soluzione iterata {0}:{1}" .format(it, x))
-            for i in range(A.shape[0]):
-                D_inv = np.diag(1 / np.nan_to_num(np.diag(D)))
-                x_new = np.dot(D_inv, bb - np.dot(LU, x))
+            print("Soluzione iterata {0}:{1}".format(it, x))
 
+            # creo la diagonale inversa
+            diag_inv = np.diag(1 / np.diag(A))
+
+            # residuo scalato
+            r = b - np.dot(A, x)
+
+            x_new = x + np.dot(diag_inv, r)
+
+            x = x_new
+
+            # controllo se raggiungo la convergenza
             if np.allclose(x, x_new, tol):
                 break
-            x = x_new
-            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
-            end = time.perf_counter()
 
-            times[it:] = (end-start)
+            # np.linalg.norm : metodo che calcola la norma
+            error = np.linalg.norm(b - np.dot(A, x)) / np.linalg.norm(b)
 
-        Jacobi.plotSystem(x, times, "Metodo di Jacobi")
-            
+            tempo.append(start - time.process_time())
+
         print()
         print("Soluzione:")
         print(format(x))
@@ -59,10 +60,9 @@ class Jacobi(System):
         print(b)
         print()
         print("Valore computato di b:")
-        print(format(np.dot(A,x)))
+        print(format(np.dot(A, x)))
         print()
-
-        print("Errore rel.:")
-        print(error)
+        #print("Errore relativo:\t", "{:.4e}".format(error))
+        print ("Errore relativo:\t", error)
         print()
-        print("Computazione in ", times)
+        print("Computazione in ", format(np.abs(sum(tempo))))

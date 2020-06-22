@@ -8,60 +8,59 @@ from library.linear import System
 import numpy as np
 import time
 
-class GaussSeidel(System):
 
-    def __init__(self):
-        return
-        
-    
-    def solver( A, b, x, tol, k):
-        
+class GaussSeidel (System):
+
+    def solver(self, A, b, x_init, tol, k):
+
         # stampiamo il sistema
-        #GaussSeidel.printSystem(A,b)
-        print("Inside Gauss-Seidel solver")
 
-        A = np.asarray(A)
+        print ("Inside Gauss-Seidel solver")
+
+        A = np.array(A)
         b = np.asarray(b)
-        x = np.asarray(x)
+        x = np.asarray(x_init)
 
-        error = None
+        error = None  # inizializzo l'errore a None
 
-        times = np.asarray(x)
+        tempo = []
 
+        for it_count in range(1, GaussSeidel.checkIteration(self, k)):
 
-        for it_count in range(1, GaussSeidel.getIteration(k)):
-            start = time.process_time()
-            print("Soluzione iterata {0}:{1}" .format(it_count, x))
-            x_new = np.zeros_like(x)
-            for i in range(A.shape[0]):
-                s1 = np.dot(A[i, :i], x_new[:i])
-                s2 = np.dot(A[i, i + 1:], x[i + 1:])
-                x_new[i] = np.nan_to_num(b[i] - s1 - s2) / np.nan_to_num(A[i, i])
+            start = time.process_time ()
+            print ("Soluzione iterata {0}:{1}".format (it_count, x))
+
+            # p matrice triangolare inferiore
+            p = np.tril (A)
+
+            # residuo scalato
+            r = b - np.dot(A, x)
+
+            y = np.dot(np.linalg.inv(p), r)
+
+            x_new = x + y
+
+            x = x_new
 
             if np.allclose(x, x_new, tol):
                 break
-            x = x_new
-            error = np.exp(np.linalg.norm(x - x_new)) / np.exp(np.linalg.norm(x))
-        
-            end = time.process_time()
-            times[it_count:] = (end-start)
-        
-        GaussSeidel.plotSystem(x, times, "Metodo di Gauss-Seidel")
-            
+
+            error = np.linalg.norm(b - np.dot(A, x)) / np.linalg.norm(b)
+
+            tempo.append(start - time.process_time())
+
         print()
-        print("Soluzione:" )
+        print("Soluzione:")
         print(format(x))
         print()
         print("Valore reale di b:")
         print(b)
         print()
         print("Valore computato di b:")
-        print(format(np.dot(A,x)))
+        print(format(np.dot(A, x)))
         print()
 
-        print("Errore rel.:" )
-        print(error)
+        #print("Errore relativo:\t", "{:.4e}".format(error))
+        print ("Errore relativo:\t", error)
         print()
-        print("Computazione in ", times)
-
-        
+        print("Computazione in ", format(np.abs(sum(tempo))))
