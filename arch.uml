@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#C:/Users/mirkl/Documents/Progetti/alg_lin_2020/library/linear.py</OriginalElement>
+  <nodes>
+    <node x="540.0" y="260.0">library.linear.System</node>
+    <node x="540.0" y="133.0">library.jacobi.Jacobi</node>
+    <node x="816.0" y="293.0">library.gauss_seidel.GaussSeidel</node>
+    <node x="4.0" y="-27.0">typing.Hashable</node>
+    <node x="524.0" y="453.0">library.conjgrad.ConjGrad</node>
+    <node x="-35.5" y="106.0">object</node>
+    <node x="244.0" y="453.0">library.gradient.Gradient</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="library.gradient.Gradient" target="library.linear.System">
+      <point x="0.0" y="-27.0" />
+      <point x="360.0" y="360.0" />
+      <point x="-100.0" y="40.0" />
+    </edge>
+    <edge source="object" target="typing.Hashable">
+      <point x="0.0" y="-214.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="library.jacobi.Jacobi" target="library.linear.System">
+      <point x="0.0" y="27.0" />
+      <point x="0.0" y="-60.0" />
+    </edge>
+    <edge source="library.linear.System" target="object">
+      <point x="-100.0" y="0.0" />
+      <point x="115.5" y="0.0" />
+    </edge>
+    <edge source="library.gauss_seidel.GaussSeidel" target="library.linear.System">
+      <point x="-144.0" y="0.0" />
+      <point x="100.0" y="0.0" />
+    </edge>
+    <edge source="library.conjgrad.ConjGrad" target="library.linear.System">
+      <point x="0.0" y="-27.0" />
+      <point x="0.0" y="60.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="1.0" x="534.0" y="253.5" />
+  <SelectedNodes>
+    <node>library.gradient.Gradient</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+</Diagram>
+
