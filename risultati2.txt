@@ -1,0 +1,47 @@
+File vem1.mtx
+
+Jacobi		4.37109e-07, 49.96875ms, 1026 iterazioni (tol e-4)
+		4.51700e-09 103.53125ms, 2137 iterazioni (tol e-6)
+		8.944e-11, 153.5ms, 3090 iterazioni (tol e-8)
+		4.5166e-11, 156.015625 ms, 3256 iterazioni (tol e-10)
+
+Guass-Siedel	 2.2299e-07, 564.21875ms, 597 iterazioni (tol e-4)
+		2.2797e-09, 1574.03125ms, 1154 iterazioni (tol e-6)
+		4.5384e-11, 1832.265625ms, 1630 iterazioni (tol e-8)
+		2.2925e-11,  2267.84375ms, 1713 iterazioni (tol e-10)
+
+
+Gradiente	4.9486e-06, 145.890625ms, 9498 iterazioni (tol e-4)
+		1.0379e-07, 462.328125ms, 19644 iterazioni (tol e-6)
+		1.0379e-07, 449.109375ms, 29999 iterazioni (tol e-8)
+		1.0379e-07,  453.859375ms, 29999 iterazioni (tol e-10)
+
+Gradiente Coniugato 	4.5952e-06, 1.125ms, 38 iterazioni (tol e-4)
+			1.6816e-08, 1.4375ms, 54 iterazioni (tol e-6)
+			2.2882e-09, 2.375ms, 58 iterazioni (tol e-8)
+			2.2882e-09, 1.671875 ms, 58 iterazioni (tol e-10)
+
+
+
+File vem2.mtx
+
+Jacobi		3.4043e-07, 456.890625ms, 1439 iterazioni (tol e-4)
+		3.5591e-09, 545.75ms, 3171 iterazioni (tol e-6)
+		7.0558e-11, 772.078125ms, 4660 iterazioni (tol e-8)
+		3.5675e-11, 810.015625 ms, 4919 iterazioni (tol e-10)
+
+Guass-Siedel	 1.7414e-07, 1171ms, 849 iterazioni (tol e-4)
+		7.8063e-08, 1275ms, 1728 iterazioni (tol e-6)
+		1.5560e-09, 1542ms, 2285 iterazioni (tol e-8)
+		3.2187e-11,  1815 ms, 2842 iterazioni (tol e-10)
+
+
+Gradiente	7.2470e-06, 63.578125ms, 1436 iterazioni (tol e-4)
+		7.3223e-08, 863.21875ms, 19644 iterazioni (tol e-6)
+		2.3456e-08, 1012.140625ms, 29999 iterazioni (tol e-8)
+		2.3456e-08,  1546.5625ms, 29999 iterazioni (tol e-10)
+
+Gradiente Coniugato 	1.8696e-05, 5.796875ms, 36 iterazioni (tol e-4)
+			5.0238e-08, 10.921875ms, 75 iterazioni (tol e-6)
+			8.0425e-10, 19.984375ms, 75 iterazioni (tol e-8)
+			8.0425e-10, 23.20315 ms, 75 iterazioni (tol e-10)

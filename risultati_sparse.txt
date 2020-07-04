@@ -1,0 +1,46 @@
+File spa1.mtx
+
+Jacobi		1.6e-08, 9ms, 208 iterazioni (tol e-4)
+		1.60671e-10, 12.5ms, 274 iterazioni (tol e-6)
+		3.02262e-12, 16.0625ms, 331 iterazioni (tol e-8)
+		1.6141e-12, 17.359375 ms, 340 iterazioni (tol e-10)
+
+Guass-Siedel	 5.2786e-09,  4.796875ms, 22 iterazioni (tol e-4)
+		6.9413e-11, 6.609375ms, 29 iterazioni (tol e-6)
+		9.1262e-13, 8.203125ms, 36 iterazioni (tol e-8)
+		4.9153e-13,  8.28125 ms, 37 iterazioni (tol e-10)
+
+
+Gradiente	1.2083e-05, 44.265625ms, 1232 iterazioni (tol e-4)
+		1.8035e-07, 1429.875ms, 29999 iterazioni (tol e-6)
+		1.8035e-07, 1608.84375ms, 29999 iterazioni (tol e-8)
+		1.8035e-07,  1391.5 ms, 29999 iterazioni (tol e-10)
+
+Gradiente Coniugato 	4.6342e-06, 3.296875ms, 91 iterazioni (tol e-4)
+			9.5252e-08, 6.4375ms, 167 iterazioni (tol e-6)
+			8.2684e-10, 8.625ms, 221 iterazioni (tol e-8)
+			8.2684e-10, 8.921875 ms, 222 iterazioni (tol e-10)
+
+
+File spa2.mtx
+
+Jacobi		5.212562e-09, 6.3125ms, 68 iterazioni (tol e-4)
+		4.902121e-11, 8.25ms, 89 iterazioni (tol e-6)
+		1.1214e-12, 9.875ms, 106 iterazioni (tol e-8)
+		4.6102e-13, 10 ms, 110 iterazioni (tol e-10)
+
+Guass-Siedel	 3.9257e-09, 34.359375ms, 11 iterazioni (tol e-4)
+		7.8063e-11, 43.4218755ms, 14 iterazioni (tol e-6)
+		1.5560e-12, 62.1875ms, 17 iterazioni (tol e-8)
+		4.2187e-13,  60.671875 ms, 18 iterazioni (tol e-10)
+
+
+Gradiente	7.2470e-06, 63.578125ms, 1436 iterazioni (tol e-4)
+		7.3223e-08, 863.21875ms, 19466 iterazioni (tol e-6)
+		1.8687e-08, 1312.140625ms, 29999 iterazioni (tol e-8)
+		1.8687e-08,  1346.765625ms, 29999 iterazioni (tol e-10)
+
+Gradiente Coniugato 	3.3451e-06, 5.6875ms, 67 iterazioni (tol e-4)
+			1.7099e-07, 11.953125ms, 140 iterazioni (tol e-6)
+			2.7071e-09, 19.984375ms, 232 iterazioni (tol e-8)
+			1.2721e-09, 20.9375 ms, 243 iterazioni (tol e-10)
