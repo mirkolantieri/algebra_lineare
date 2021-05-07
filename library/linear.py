@@ -1,6 +1,6 @@
 """
 Il file linear.py rappresenta la libreria generale che si va a costruire
-come struttura generale, per la risoluzione dei metodi lineari.
+per la risoluzione dei metodi lineari.
 Come indicato, servirà come struttura di base, per gli altri metodi, i 
 quali verranno definiti nel folder ./library
 """
