@@ -2,7 +2,6 @@
 
 <p>
 <b> Mirko Lantieri</b><br>
-Matricola 858278 <br>
 A.A 2019/2020 
 </p>
 
